@@ -333,5 +333,209 @@ final class ViewController: UIViewController {
         return res
     }
     
-   
+    @objc private func actionClearButtonTapped() {
+        result = "0"
+        secondValue = "0"
+        fractionalNumberResult = false
+        fractionalNumberSecondValue = false
+        secondNumberSet = false
+        currentOperation = ""
+    }
+    
+    @objc private func actionNegativityButtonTapped() {
+        if currentOperation == "" {
+            if result.contains("-") {
+                result = result.filter{ item in
+                    if item != "-" {
+                        return true
+                    }
+                    return false
+                }
+            }
+            else {
+                result = "-" + result
+            }
+        }
+        else {
+            if secondValue.contains("-") {
+                secondValue = secondValue.filter{ item in
+                    if item != "-" {
+                        return true
+                    }
+                    return false
+                }
+            }
+            else {
+                secondValue = "-" + secondValue
+            }
+        }
+    }
+    
+    @objc private func actionModuleButtonTapped() {
+        if secondNumberSet {
+            if currentOperation != "minus" && currentOperation != "plus" {
+                let DoubleSecondValue = Double(secondValue)!
+                secondValue = String(DoubleSecondValue / 100)
+            }
+            else {
+                let DoubleResult = Double(result)!
+                let DoubleSecondValue = Double(secondValue)!
+                
+                if currentOperation == "minus" {
+                    currentOperation = "moduleMinus"
+                    let value = DoubleResult * (DoubleSecondValue * 0.01)
+                    if value < 999999999 {
+                        secondValue = String(value)
+                    }
+                }
+                else {
+                    currentOperation = "modulePlus"
+                    let value = DoubleResult * (DoubleSecondValue * 0.01)
+                    if value < 999999999 {
+                        secondValue = String(value)
+                    }
+                }
+            }
+        }
+        else {
+            let DoubleResult = Double(result)!
+            result = String(DoubleResult / 100)
+        }
+    }
+    
+    @objc private func actionDivisionButtonTapped() {
+        currentOperation = "division"
+    }
+    
+    @objc private func actionMultiplicationButtonTapped() {
+        currentOperation = "multiplication"
+    }
+    
+    @objc private func actionMinusButtonTapped() {
+        currentOperation = "minus"
+    }
+    
+    @objc private func actionPlusButtonTapped() {
+        currentOperation = "plus"
+    }
+    
+    @objc private func actionEqualButtonTapped() {
+        outputOfResult = true
+    
+        if currentOperation != "" {
+            switch currentOperation {
+            case "division":
+                if secondNumberSet {
+                    let DoubleResult = Double(result)!
+                    let DoubleSecondValue = Double(secondValue)!
+                    if DoubleResult / DoubleSecondValue < 999999999 {
+                        result = String(DoubleResult / DoubleSecondValue)
+                    }
+                }
+            case "multiplication":
+                if secondNumberSet {
+                    let DoubleResult = Double(result)!
+                    let DoubleSecondValue = Double(secondValue)!
+                    if DoubleResult * DoubleSecondValue < 999999999 {
+                        result = String(DoubleResult * DoubleSecondValue)
+                    }
+                }
+            case "minus":
+                if secondNumberSet {
+                    let DoubleResult = Double(result)!
+                    let DoubleSecondValue = Double(secondValue)!
+                    if DoubleResult - DoubleSecondValue < 999999999 {
+                        result = String(DoubleResult - DoubleSecondValue)
+                    }
+                }
+            case "plus":
+                if secondNumberSet {
+                    let DoubleResult = Double(result)!
+                    let DoubleSecondValue = Double(secondValue)!
+                    if DoubleResult + DoubleSecondValue < 999999999 {
+                        result = String(DoubleResult + DoubleSecondValue)
+                    }
+                }
+            case "moduleMinus":
+                if secondNumberSet {
+                    let DoubleResult = Double(result)!
+                    let DoubleSecondValue = Double(secondValue)!
+                    if DoubleResult - DoubleSecondValue < 999999999 {
+                        result = String(DoubleResult - DoubleSecondValue)
+                    }
+                }
+            case "modulePlus":
+                if secondNumberSet {
+                    let DoubleResult = Double(result)!
+                    let DoubleSecondValue = Double(secondValue)!
+                    if DoubleResult + DoubleSecondValue < 999999999 {
+                        result = String(DoubleResult + DoubleSecondValue)
+                    }
+                }
+            default:
+                print()
+            }
+        }
+        
+        secondValue = "0"
+        fractionalNumberSecondValue = false
+        secondNumberSet = false
+        currentOperation = ""
+    }
+    
+    
+    @objc private func actionZeroNumberButtonTapped() {
+        changeResult(0)
+    }
+    
+    @objc private func actionOneNumberButtonTapped() {
+        changeResult(1)
+    }
+    
+    @objc private func actionTwoNumberButtonTapped() {
+        changeResult(2)
+    }
+    
+    @objc private func actionThreeNumberButtonTapped() {
+        changeResult(3)
+    }
+    
+    @objc private func actionFourNumberButtonTapped() {
+        changeResult(4)
+    }
+    
+    @objc private func actionFiveNumberButtonTapped() {
+        changeResult(5)
+    }
+    
+    @objc private func actionSixNumberButtonTapped() {
+        changeResult(6)
+    }
+    
+    @objc private func actionSevenNumberButtonTapped() {
+        changeResult(7)
+    }
+    
+    @objc private func actionEightNumberButtonTapped() {
+        changeResult(8)
+    }
+    
+    @objc private func actionNineNumberButtonTapped() {
+        changeResult(9)
+    }
+    
+    @objc private func actionFractionalPartButtonTapped() {
+        if currentOperation == "" {
+            if !result.contains(".") {
+                result += "."
+                fractionalNumberResult = true
+            }
+        }
+        else {
+            if !secondValue.contains(".") {
+                secondValue += "."
+                fractionalNumberSecondValue = true
+            }
+        }
+    }
 }

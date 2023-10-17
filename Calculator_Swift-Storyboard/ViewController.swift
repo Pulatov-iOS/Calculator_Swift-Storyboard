@@ -13,29 +13,12 @@ final class ViewController: UIViewController {
     private var result: String = "0" {
         didSet {
             resultLabel.text = toundingFractionalPart(result)
-            
-            // Changing the font size
-            if result.count > 6 {
-                resultLabel.font = .systemFont(ofSize: 50)
-            }
-            else {
-                resultLabel.font = .systemFont(ofSize: 80)
-            }
         }
     }
     private var secondValue: String = "0" {
         didSet {
             if secondValue != "0" {
-          
                 resultLabel.text = toundingFractionalPart(secondValue)
-                
-                // Changing the font size
-                if secondValue.count > 6 {
-                    resultLabel.font = .systemFont(ofSize: 50)
-                }
-                else {
-                    resultLabel.font = .systemFont(ofSize: 80)
-                }
             }
         }
     }

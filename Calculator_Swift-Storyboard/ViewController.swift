@@ -165,6 +165,8 @@ final class ViewController: UIViewController {
         resultLabel.textColor = .white
         resultLabel.textAlignment = .right
         resultLabel.font = .systemFont(ofSize: 80)
+        resultLabel.minimumScaleFactor = 0.5
+        resultLabel.adjustsFontSizeToFitWidth = true
 
         // Action buttons
         settingTextColorFontSizeButton(clearButton, #selector(actionClearButtonTapped), text: "C", backgroundColor: .systemGray, titleColor: . black)
